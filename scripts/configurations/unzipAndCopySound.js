@@ -25,7 +25,8 @@ module.exports = function(context) {
   }
   
   var wwwPath = utils.getResourcesFolderPath(context, platform, platformConfig);
-  
+  console.log("wwwPath is: ");
+  console.log(wwwPath);
   var soundZipFile = utils.getZipFile(wwwPath, constants.pushSound);
   if (!soundZipFile) {
     console.log("No zip file found containing sound files");
