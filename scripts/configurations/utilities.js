@@ -91,6 +91,8 @@ function getZipFile(folder, zipFileName) {
   try {
     var files = getFilesFromPath(folder);
     for (var i = 0; i < files.length; i++) {
+      console.log("File name: ");
+      console.log(files[i]);
       if (files[i].endsWith(constants.zipExtension)) {
         var fileName = path.basename(files[i], constants.zipExtension);
         if (fileName === zipFileName) {
