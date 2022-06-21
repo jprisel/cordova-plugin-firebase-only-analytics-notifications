@@ -54,7 +54,7 @@ function createOrCheckIfFolderExists(path) {
 }
 
 function getAllFiles(dirPath, arrayOfFiles) {
-  files = fs.readdirSync(dirPath)
+  let files = fs.readdirSync(dirPath)
 
   arrayOfFiles = arrayOfFiles || []
 
