@@ -53,22 +53,16 @@ function createOrCheckIfFolderExists(path) {
   }
 }
 
-function getAllFiles(dirPath, arrayOfFiles) {
-  let files = fs.readdirSync(dirPath)
+let Files  = [];
 
-  arrayOfFiles = arrayOfFiles || []
-
-  files.forEach(function(file) {
-    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
-      console.log(arrayOfFiles[arrayOfFiles.length - 1]);
-    } else {
-      arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
-    }
-  })
-
-  return arrayOfFiles
+function ThroughDirectory(Directory) {
+    fs.readdirSync(Directory).forEach(File => {
+        const Absolute = path.join(Directory, File);
+        if (fs.statSync(Absolute).isDirectory()) return ThroughDirectory(Absolute);
+        else return Files.push(Absolute);
+    });
 }
+
 
 function getSourceFolderPath(context, wwwPath) {
   var sourceFolderPath;
@@ -198,5 +192,5 @@ module.exports = {
   checkIfFolderExists,
   getAndroidTargetSdk,
   getSourceFolderPath,
-  getAllFiles
+  ThroughDirectory
 };
