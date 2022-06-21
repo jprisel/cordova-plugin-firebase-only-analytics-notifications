@@ -38,7 +38,14 @@ module.exports = function(context) {
   var targetPath = path.join(wwwPath, constants.pushSound);
   zip.extractAllTo(targetPath, true);
 
+  console.log("TargetPath is: "+ targetPath);
   var files = utils.getFilesFromPath(targetPath);
+  
+  console.log("the Files are:");
+  for (var i = 0; i < files.length; i++) {
+    console.log(files[i]);
+  }
+
   var soundFile = files.filter(x => path.basename(x) === platformConfig.soundFileName)[0];
 
   if (!soundFile) {
