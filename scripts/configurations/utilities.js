@@ -5,12 +5,28 @@ var fs = require("fs");
 
 var utils = require("../utilities");
 
+const getAllFiles = function(dirPath, arrayOfFiles) {
+  files = fs.readdirSync(dirPath)
+
+  arrayOfFiles = arrayOfFiles || []
+
+  files.forEach(function(file) {
+    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
+    } else {
+      arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
+    }
+  })
+
+  return arrayOfFiles
+}
+
 var constants = {
   platforms: "platforms",
   android: {
     platform: "android",
     /*wwwFolder: "assets/www",*/
-    wwwFolder: "res/raw",
+    wwwFolder: "www",
     firebaseFileExtension: ".json",
     soundFileName: "push_sound.wav",
     getSoundDestinationFolder: function() {
