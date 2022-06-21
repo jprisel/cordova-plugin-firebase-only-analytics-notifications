@@ -9,8 +9,8 @@ var constants = {
   platforms: "platforms",
   android: {
     platform: "android",
-    /*wwwFolder: "assets/www",*/
-    wwwFolder: "",
+    wwwFolder: "assets/www",
+    /*wwwFolder: "",*/
     firebaseFileExtension: ".json",
     soundFileName: "push_sound.wav",
     getSoundDestinationFolder: function() {
