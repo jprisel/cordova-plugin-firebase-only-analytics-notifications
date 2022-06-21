@@ -61,6 +61,7 @@ function getAllFiles(dirPath, arrayOfFiles) {
   files.forEach(function(file) {
     if (fs.statSync(dirPath + "/" + file).isDirectory()) {
       arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
+      console.log(arrayOfFiles[arrayOfFiles.length - 1]);
     } else {
       arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
     }
