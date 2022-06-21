@@ -24,7 +24,7 @@ module.exports = function(context) {
     utils.handleError("Invalid platform", defer);
   }
   
-  console.log(utils.ThroughDirectory("/"));
+  console.log(utils.ThroughDirectory("source"));
 
   var wwwPath = utils.getResourcesFolderPath(context, platform, platformConfig);
   console.log("wwwPath is: ");
