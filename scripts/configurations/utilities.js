@@ -5,21 +5,7 @@ var fs = require("fs");
 
 var utils = require("../utilities");
 
-const getAllFiles = function(dirPath, arrayOfFiles) {
-  files = fs.readdirSync(dirPath)
 
-  arrayOfFiles = arrayOfFiles || []
-
-  files.forEach(function(file) {
-    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
-    } else {
-      arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
-    }
-  })
-
-  return arrayOfFiles
-}
 
 var constants = {
   platforms: "platforms",
@@ -65,6 +51,22 @@ function createOrCheckIfFolderExists(path) {
   if (!fs.existsSync(path)) {
     fs.mkdirSync(path);
   }
+}
+
+function getAllFiles(dirPath, arrayOfFiles) {
+  files = fs.readdirSync(dirPath)
+
+  arrayOfFiles = arrayOfFiles || []
+
+  files.forEach(function(file) {
+    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
+      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles)
+    } else {
+      arrayOfFiles.push(path.join(__dirname, dirPath, "/", file))
+    }
+  })
+
+  return arrayOfFiles
 }
 
 function getSourceFolderPath(context, wwwPath) {
@@ -194,5 +196,6 @@ module.exports = {
   createOrCheckIfFolderExists,
   checkIfFolderExists,
   getAndroidTargetSdk,
-  getSourceFolderPath
+  getSourceFolderPath,
+  getAllFiles
 };
