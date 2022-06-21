@@ -14,7 +14,8 @@ var constants = {
     firebaseFileExtension: ".json",
     soundFileName: "push_sound.wav",
     getSoundDestinationFolder: function() {
-      return "platforms/android/res/raw";
+      /*return "platforms/android/res/raw";*/
+      return "res/raw";
     }
   },
   ios: {
