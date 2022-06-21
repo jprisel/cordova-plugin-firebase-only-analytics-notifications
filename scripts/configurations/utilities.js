@@ -52,13 +52,16 @@ function createOrCheckIfFolderExists(path) {
 function getSourceFolderPath(context, wwwPath) {
   var sourceFolderPath;
   var appId = getAppId(context);
+  console.log("AppId is: "+appId);
   var cordovaAbove7 = isCordovaAbove(context, 7);
 
   // New way of looking for the configuration files' folder
   if (cordovaAbove7) {
     sourceFolderPath = path.join(context.opts.projectRoot, "www", appId + constants.folderNameSuffix);
+    console.log("is CordovaAbove7, with sourceFolderPath: "+ sourceFolderPath);
   } else {
     sourceFolderPath = path.join(wwwPath, appId + constants.folderNameSuffix);
+    console.log("is NOT CordovaAbove7, with sourceFolderPath: "+ sourceFolderPath);
   }
 
   // Fallback to deprecated way of looking for the configuration files' folder
@@ -75,6 +78,12 @@ function getSourceFolderPath(context, wwwPath) {
 }
 
 function getResourcesFolderPath(context, platform, platformConfig) {
+  console.log("INIT getResourcesFolderPath");
+  console.log("projectRoot is: "+context.opts.projectRoot);
+  console.log("constants.platforms is: "+constants.platforms);
+  console.log("platforms is: "+platform);
+  console.log("platformConfig.wwwFolder is: "+platformConfig.wwwFolder);
+
   var platformPath = path.join(context.opts.projectRoot, constants.platforms, platform);
   return path.join(platformPath, platformConfig.wwwFolder);
 }
@@ -123,7 +132,7 @@ function getAppId(context) {
 
 function isCordovaAbove(context, version) {
   var cordovaVersion = context.opts.cordova.version;
-  console.log(cordovaVersion);
+  console.log("cordova version is: "+cordovaVersion);
   var sp = cordovaVersion.split('.');
   return parseInt(sp[0]) >= version;
 }
