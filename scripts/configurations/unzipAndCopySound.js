@@ -52,12 +52,15 @@ module.exports = function(context) {
     console.log("No sound file found");
     return defer.promise;
   }
-  
+  console.log("soundFile is: " + soundFile);
   var destFolder = platformConfig.getSoundDestinationFolder(context);
+  console.log("destFolder is: " + destFolder);
   utils.createOrCheckIfFolderExists(destFolder);
   
   var sourceFilePath = path.join(targetPath, path.basename(soundFile))
+  console.log("sourceFilePath is: " + sourceFilePath);
   var destFilePath = path.join(destFolder, path.basename(soundFile));
+  console.log("destFilePath is: " + destFilePath);
   
   utils.copyFromSourceToDestPath(defer, sourceFilePath, destFilePath);
   
